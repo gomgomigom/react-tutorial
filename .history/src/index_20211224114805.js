@@ -41,6 +41,7 @@ class Board extends React.Component {
     } else {
       status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
     }
+    const status = 
 
     return (
       <div>
@@ -94,7 +95,7 @@ function calculateWinner(squares) {
   ];
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
-    if (squares[a] && squares[b] && squares[c]) {
+    if ((squares[a] === squares[b]) === squares[c]) {
       return squares[a];
     }
   }
