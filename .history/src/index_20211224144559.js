@@ -20,7 +20,7 @@ class Board extends React.Component {
   renderSquare(i) {
     return (
       <Square
-        onCheck={() => this.props.onCheck(i)}
+        onCheck={() => this.handleCheckX(i)}
         value={this.props.squares[i]}
       />
     );

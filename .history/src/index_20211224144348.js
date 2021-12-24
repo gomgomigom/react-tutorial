@@ -20,7 +20,7 @@ class Board extends React.Component {
   renderSquare(i) {
     return (
       <Square
-        onCheck={() => this.props.onCheck(i)}
+        onCheck={() => this.handleCheckX(i)}
         value={this.props.squares[i]}
       />
     );
@@ -77,11 +77,13 @@ class Game extends React.Component {
     return (
       <div className='game'>
         <div className='game-board'>
-          <Board
-            squares={this.state.squares}
-            xIsNext={this.state.xIsNext}
-            onCheck={this.handleCheckX}
-          />
+          {this.state.map((square) => (
+            <Board
+              square={square.squares}
+              xIsNext={square.xIsNext}
+              onCheck={this.handleCheckX}
+            />
+          ))}
         </div>
         <div className='game-info'>
           <div>{/* status */}</div>

@@ -20,19 +20,19 @@ class Board extends React.Component {
   renderSquare(i) {
     return (
       <Square
-        onCheck={() => this.props.onCheck(i)}
-        value={this.props.squares[i]}
+        onCheck={() => this.handleCheckX(i)}
+        value={this.props.state.squares[i]}
       />
     );
   }
 
   render() {
-    const winner = calculateWinner(this.props.squares);
+    const winner = calculateWinner(this.props.state.squares);
     let status;
     if (winner) {
       status = 'Winner' + winner;
     } else {
-      status = `Next player: ${this.props.xIsNext ? 'X' : 'O'}`;
+      status = `Next player: ${this.props.state.xIsNext ? 'X' : 'O'}`;
     }
 
     return (
@@ -77,11 +77,9 @@ class Game extends React.Component {
     return (
       <div className='game'>
         <div className='game-board'>
-          <Board
-            squares={this.state.squares}
-            xIsNext={this.state.xIsNext}
-            onCheck={this.handleCheckX}
-          />
+          {this.state.squares.map((square) => (
+            <Board onCheck={this.handleCheckX} />
+          ))}
         </div>
         <div className='game-info'>
           <div>{/* status */}</div>
